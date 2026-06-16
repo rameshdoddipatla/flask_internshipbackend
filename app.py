@@ -1,4 +1,4 @@
-from flask import Flask
+from flask import Flask, jsonify, request
 import psycopg2
 
 app = Flask(__name__)
@@ -40,9 +40,54 @@ def create_student_table():
 # Call function here
 create_student_table()
 
-@app.route("/")
+@app.route("/send_data", methods=["POST"])
+def send_data():
+    name = request.json['name']
+    age = request.json['age']
+    grade = request.json['grade']
+    connection = get_db_connection()
+    cur = connection.cursor()
+    cur.execute("INSERT INTO student_table (name, age, grade) VALUES (%s, %s, %s)", (name, age, grade))
+    connection.commit()
+    cur.close()
+    connection.close()  
+    return jsonify({"message": "Data inserted successfully!"}), 201
+
+
+@app.route("/get_data", methods=["GET"])
+def get_data():
+    connection = get_db_connection()
+    cur = connection.cursor()
+    cur.execute("SELECT * FROM student_table")
+    data = cur.fetchone()
+    cur.close()
+    connection.close()
+    return jsonify({
+        "id": data[0],
+        "name": data[1],
+        "age": data[2],
+        "grade": data[3]
+    }) ,200
+
+
+@app.route("/put_data", methods=["PUT"])
+def put_data():
+    id = request.json['id']
+    name = request.json['name']
+    age = request.json['age']
+    grade = request.json['grade']
+    connection = get_db_connection()
+    cur = connection.cursor()
+    cur.execute("UPDATE student_table SET name=%s, age=%s, grade=%s WHERE id=%s", (name, age, grade, id))
+    connection.commit()
+    cur.close()
+    connection.close()  
+    return jsonify({"message": "Data updated successfully!"}), 200    
+
+@app.route('/')
 def home():
-    return "Flask + PostgreSQL Working!"
+    return "flasking is ruuing"
+   
 
 if __name__ == "__main__":
     app.run(debug=True)

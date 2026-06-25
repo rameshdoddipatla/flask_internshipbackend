@@ -56,6 +56,36 @@ def signup():
     connection.close()
     return jsonify({"message":"signup successful"})
 
+@app.route('/login' , methods =['POST'])
+def login():
+    email = request.json['email']
+    password = request.json['password'] 
+    
+    if not email  or not password:
+        return jsonify({"error":"All fields are required"}),400
+    connection = get_db_connection()
+    cur = connection.cursor()
+    cur.execute("""
+              select user_id, username,password from users_table
+                where email = %s
+""",(email,))
+    user = cur.fetchone()
+    cur.close()
+    connection.close()
+    if not user:
+        return jsonify({"error":"user not found"})
+    user_id , username, hashed_password = user
+
+    if not bcrypt.check_password_hash(hashed_password,password):
+        return jsonify({"error":"invalid password"}),401
+    return jsonify({
+        "message":"login successful",
+        "user":{
+            "user_id":user_id,
+            "username":username,
+            "email":email
+        }
+    })
 
 
 if __name__ == "__main__":

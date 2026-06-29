@@ -14,3 +14,6 @@ pip install psycopg2
 #to run
 
 python app.py
+
+#JWT
+pip3 install flask-jwt-extended

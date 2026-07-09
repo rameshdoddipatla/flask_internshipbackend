@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+<title>Dashboard</title>
+
+<link rel="stylesheet"
+href="{{ url_for('static',filename='css/style.css') }}">
+
+</head>
+
+<body>
+
+
+<div class="container">
+
+    <div class="header">
+        <h2>📝 My Notes</h2>
+
+        <button class="logout-btn" onclick="logout()">
+            Logout
+        </button>
+    </div>
+
+    <input id="title" placeholder="Enter Note Title">
+
+    <textarea
+        id="description"
+        placeholder="Write your note here...">
+    </textarea>
+
+    <button onclick="createNote()">
+        ➕ Create Note
+    </button>
+
+    <hr>
+
+    <div id="notes"></div>
+
+</div>
+
+<script src="{{ url_for('static',filename='js/app.js') }}"></script>
+
+<script>
+
+window.onload=function(){
+getNotes();
+}
+
+</script>
+
+</body>
+</html>

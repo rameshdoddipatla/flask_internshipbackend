@@ -1,0 +1,171 @@
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:'Segoe UI',Tahoma,Geneva,Verdana,sans-serif;
+}
+
+body{
+    min-height:100vh;
+    background:linear-gradient(135deg,#4f46e5,#7c3aed,#2563eb);
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    padding:40px;
+}
+
+.container{
+    width:100%;
+    max-width:700px;
+    background:rgba(255,255,255,.15);
+    backdrop-filter:blur(15px);
+    border-radius:20px;
+    padding:35px;
+    box-shadow:0 15px 35px rgba(0,0,0,.25);
+    border:1px solid rgba(255,255,255,.2);
+}
+
+h1,h2{
+    color:#fff;
+    text-align:center;
+    margin-bottom:25px;
+}
+
+input,
+textarea{
+    width:100%;
+    padding:14px 18px;
+    margin:10px 0;
+    border:none;
+    border-radius:12px;
+    outline:none;
+    background:rgba(255,255,255,.95);
+    font-size:16px;
+}
+
+textarea{
+    resize:none;
+    height:120px;
+}
+
+button{
+    width:100%;
+    padding:14px;
+    border:none;
+    border-radius:12px;
+    background:#2563eb;
+    color:white;
+    font-size:17px;
+    font-weight:bold;
+    cursor:pointer;
+    transition:.3s;
+    margin-top:10px;
+}
+
+button:hover{
+    background:#1d4ed8;
+    transform:translateY(-2px);
+}
+
+a{
+    color:white;
+    text-decoration:none;
+    font-weight:600;
+}
+
+a:hover{
+    text-decoration:underline;
+}
+
+.note{
+    margin-top:20px;
+    background:white;
+    border-radius:15px;
+    padding:20px;
+    box-shadow:0 10px 25px rgba(0,0,0,.15);
+    animation:fadeIn .4s;
+}
+
+.note h3{
+    color:#1e293b;
+    margin-bottom:10px;
+}
+
+.note p{
+    color:#555;
+    margin-bottom:15px;
+}
+
+.note small{
+    color:gray;
+}
+
+.note-buttons{
+    display:flex;
+    gap:10px;
+    margin-top:15px;
+}
+
+.edit-btn{
+    flex:1;
+    background:#16a34a;
+}
+
+.edit-btn:hover{
+    background:#15803d;
+}
+
+.delete-btn{
+    flex:1;
+    background:#dc2626;
+}
+
+.delete-btn:hover{
+    background:#b91c1c;
+}
+
+.logout-btn{
+    width:auto;
+    float:right;
+    padding:10px 20px;
+    background:#ef4444;
+    margin-bottom:20px;
+}
+
+.logout-btn:hover{
+    background:#dc2626;
+}
+
+.header{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    margin-bottom:25px;
+}
+
+@keyframes fadeIn{
+    from{
+        opacity:0;
+        transform:translateY(20px);
+    }
+    to{
+        opacity:1;
+        transform:translateY(0);
+    }
+}
+
+@media(max-width:600px){
+
+.container{
+    padding:20px;
+}
+
+.note-buttons{
+    flex-direction:column;
+}
+
+.logout-btn{
+    width:100%;
+    float:none;
+}
+}

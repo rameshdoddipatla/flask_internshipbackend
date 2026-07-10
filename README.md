@@ -17,3 +17,6 @@ python app.py
 
 #JWT
 pip3 install flask-jwt-extended
+
+#this is projects
+https://praveen-code-code.github.io/hackthon/
